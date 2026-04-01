@@ -8,7 +8,13 @@ import Sidebar from "./components/layout/Sidebar";
 import Filters from "./components/Filters";
 import FleetStatsChart from "./components/charts/FleetStatsChart";
 
-const socket = io("http://localhost:5000");
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
+
+const socket = io(SOCKET_URL, {
+  transports: ["websocket", "polling"],
+  reconnectionAttempts: 5,
+  reconnectionDelay: 2000,
+});
 
 function App() {
   const { state, applyEvents } = useFleetStore();
@@ -16,8 +22,8 @@ function App() {
 
   useEffect(() => {
     socket.on("events", applyEvents);
-    return () => socket.off("events");
-  }, []);
+    return () => { socket.off("events", applyEvents); };
+  }, [applyEvents]);
 
   let trips = Object.values(state.trips);
 
