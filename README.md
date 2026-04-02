@@ -2,7 +2,7 @@
 
 A full-stack real-time fleet tracking dashboard that simulates live GPS data using an event-driven architecture. Visualizes multiple concurrent trips on a map, tracks progress, and surfaces intelligent alerts for fleet monitoring.
 
-**[Live Demo →](https://your-frontend-url.vercel.app)** &nbsp;|&nbsp; **[API →](https://your-backend-url.onrender.com)**
+**[Live Demo →](https://fleet-tracking-dashboard-dusky.vercel.app/)**
 
 ---
 
