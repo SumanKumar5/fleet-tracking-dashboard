@@ -34,6 +34,9 @@ export interface RawFleetEvent {
 
   planned_distance_km?: number;
   estimated_duration_hours?: number;
+
+  error_message?: string; 
+  severity?: string;
 }
 
 export enum EventType {
