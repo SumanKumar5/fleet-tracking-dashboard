@@ -33,7 +33,7 @@ export default function MapView({ trips }: Props) {
     Record<string, { lat: number; lng: number }>
   >({});
 
-  const onLoad = (map: google.maps.Map) => (mapRef.current = map);
+  const onLoad = (map: google.maps.Map) => { mapRef.current = map; };
 
   useEffect(() => {
     if (!mapRef.current) return;
