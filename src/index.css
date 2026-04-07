@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #060910;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.leaflet-container {
+  background: #060910;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(15, 20, 35, 0.9) !important;
+  color: #10b981 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(8px);
+  font-weight: 700;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(6,9,16,0.7) !important;
+  color: #374151 !important;
+  font-size: 9px !important;
+  backdrop-filter: blur(4px);
+}
+
+.leaflet-control-attribution a {
+  color: #374151 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(15, 20, 35, 0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  color: white;
+}
+
+.leaflet-popup-tip {
+  background: rgba(15, 20, 35, 0.95);
+}
+
+@keyframes ping-slow {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0;   }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.25s ease forwards;
+}
+
+.speed-value {
+  text-transform: none !important;
+}
