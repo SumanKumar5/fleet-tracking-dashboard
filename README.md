@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-🔗 **[fleet-os.vercel.app](https://fleet-os.vercel.app)**
+🔗 **[fleet-os.vercel.app](https://fleet-tracking-dashboard-dusky.vercel.app/)**
 
 ---
 
@@ -131,8 +131,8 @@ Raw GPS data produces discrete position jumps between pings. The `useInterpolate
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/fleet-dashboard
-cd fleet-dashboard
+git clone https://github.com/SumanKumar5/fleet-tracking-dashboard
+cd fleet-tracking-dashboard
 npm install
 npm run dev
 ```
@@ -165,12 +165,6 @@ The dashboard is optimized to handle large datasets without degrading UI perform
 - **Trail capping** — each vehicle trail is capped at 500 points, dropping the oldest points as new ones are added
 - **Virtualized alert list** — the expanded alert feed uses react-virtuoso to render only visible rows regardless of total alert count
 - **Memoized stats** — the per-trip statistics modal uses `useMemo` to avoid recomputing speed profiles on every render
-
----
-
-## Project Structure Notes
-
-Trip data files are served as static assets from `public/data/` and fetched at runtime via the browser's `fetch` API. This means no bundling overhead for the large JSON files — they load in parallel on startup and are never included in the JavaScript bundle.
 
 ---
 
