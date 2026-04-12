@@ -1,6 +1,6 @@
-# FleetOS — Real-Time Fleet Tracking Dashboard
-
 <div align="center">
+
+# FleetOS — Real-Time Fleet Tracking Dashboard
 
 **A production-grade fleet intelligence dashboard that processes 40,000+ real-time telemetry events across 5 simultaneous vehicle trips spanning the continental United States.**
 
