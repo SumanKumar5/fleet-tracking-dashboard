@@ -1,67 +1,69 @@
 # FleetOS — Real-Time Fleet Tracking Dashboard
 
-> A production-grade fleet intelligence dashboard. Processes 40,000+ real-time telemetry events across 5 simultaneous vehicle trips spanning the continental United States.
+<div align="center">
 
-![FleetOS Dashboard](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)
-![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat&logo=vite)
-![Tailwind](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat&logo=tailwindcss)
-![Zustand](https://img.shields.io/badge/Zustand-5-orange?style=flat)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+**A production-grade fleet intelligence dashboard that processes 40,000+ real-time telemetry events across 5 simultaneous vehicle trips spanning the continental United States.**
+
+<br/>
+
+[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_4-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4)](https://tailwindcss.com)
+[![Zustand](https://img.shields.io/badge/Zustand_5-FF6B35?style=for-the-badge&logo=react&logoColor=white)](https://zustand-demo.pmnd.rs)
+[![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
+
+<br/>
+
+ **[Live Demo → fleet-tracking-dashboard-dusky.vercel.app](https://fleet-tracking-dashboard-dusky.vercel.app/)**
+
+</div>
 
 ---
 
-## Live Demo
+## What is FleetOS?
 
-🔗 **[fleet-os.vercel.app](https://fleet-tracking-dashboard-dusky.vercel.app/)**
-
----
-
-## Overview
-
-FleetOS is a fully interactive fleet tracking dashboard that replays real GPS telemetry data from 5 simultaneous vehicle trips. It simulates a live operations center where a fleet manager can monitor all vehicles, respond to alerts, and drill into individual trip analytics — all in real time.
+FleetOS simulates a live fleet operations center. It replays real GPS telemetry data from 5 vehicle trips — from a 2,959 km cross-country haul to an urban delivery route — with full real-time event processing, alert management, and trip analytics. Every architectural decision was made with production-grade performance in mind.
 
 ---
 
 ## Features
 
-### Core Simulation Engine
-- **Web Worker-based simulation** — the event processing loop runs off the main thread, keeping the UI perfectly smooth at all playback speeds
-- **Chronological event replay** — 40,000+ events sorted and dispatched in timestamp order across all 5 trips simultaneously
-- **Playback controls** — 1x, 10x, 50x, 100x speed multipliers with play, pause, and reset
-- **Virtual clock** — simulated time advances independently of wall clock time, accurately reflecting the original data timestamps
+### Simulation Engine
+- **Web Worker architecture** — the entire event loop runs off the main thread, the UI never blocks regardless of playback speed
+- **Chronological replay** — 40,000+ events dispatched in timestamp order across all 5 trips simultaneously
+- **Variable speed playback** — 1x, 10x, 50x, 100x multipliers with play, pause, and reset
+- **Virtual clock** — simulation time advances independently of wall clock, accurately reflecting original data timestamps
 
 ### Live Map
-- **Real-time vehicle markers** with animated pulse rings on moving vehicles
-- **Smooth position interpolation** — vehicles glide between GPS pings using `requestAnimationFrame` and easing functions instead of teleporting
-- **Directional heading arrows** that rotate with vehicle movement
-- **Color-coded trail polylines** per vehicle, with cancelled routes shown in red
-- **Route preview on hover** — hover any trip card to see the full planned route as a dashed overlay on the map
-- **Dark CartoDB tiles** for a professional operations center aesthetic
+- **Animated vehicle markers** with SVG pulse rings on moving vehicles
+- **Smooth position interpolation** — `requestAnimationFrame` + ease-in-out easing glides vehicles between GPS pings instead of teleporting
+- **Directional heading arrows** that rotate with vehicle movement in real time
+- **Color-coded trail polylines** per vehicle — cancelled routes render in red
+- **Route preview on hover** — hover any trip card to overlay the full planned route as a dashed line on the map
+- **CartoDB dark tiles** — genuine dark navy map with no CSS filter hacks
 
 ### Sidebar & Trip Cards
-- **Live trip cards** with real-time progress bars, speed, signal quality, fuel level, and battery
-- **Expandable/collapsible sidebar** — collapse to a slim icon strip for maximum map visibility
-- **Click to select** any vehicle — highlights its trail on the map and opens the detail panel
-- **Per-vehicle detail panel** with live speed and fuel charts (Recharts), route progress, and alert history
+- **Live trip cards** — real-time progress bars, speed, signal quality, fuel level, and battery per vehicle
+- **Collapsible sidebar** — collapse to a 52px icon strip for maximum map real estate
+- **Vehicle selection** — click any card to highlight its trail on the map and open the detail panel
+- **Per-vehicle detail panel** — live speed and fuel charts (Recharts), route progress, and alert history
 
 ### Alert System
-- **Real-time alert feed** with severity categorization — Critical, Warning, and Info tiers
-- **Filter tabs** — filter alerts by severity level live as they arrive
-- **Expand/collapse** — shows 2 alerts collapsed, virtualized scroll for full list
-- **Toast notifications** — critical and warning alerts trigger dismissible toast popups with auto-dismiss timers
+- **Severity tiers** — Critical, Warning, and Info with distinct visual treatment
+- **Filter tabs** — filter the live alert feed by severity in real time
+- **Expand / collapse** — 2 alerts shown collapsed, virtualized scroll (react-virtuoso) for the full list
+- **Toast notifications** — critical and warning events trigger dismissible popups with shrinking progress timers
 
 ### Fleet Analytics
-- **KPI bar** — live fleet-wide metrics including active vehicles, total distance, average speed, completed trips, and alert count
-- **Status donut chart** — real-time breakdown of vehicle statuses (moving, stopped, completed, cancelled, pending)
-- **Per-trip statistics modal** — click any trip's stats button to see avg speed, max speed, duration, stops, violations, signal losses, refuels, fuel consumed, and a full speed profile chart
-
-### Completion State
-- **Simulation complete overlay** — when all events are processed, a summary screen shows completed trips, cancelled trips, total distance, and total alerts with a replay button
+- **KPI bar** — live fleet-wide metrics: active vehicles, total distance, avg speed, completed trips, alert count
+- **Status donut chart** — real-time breakdown of vehicle statuses across the entire fleet
+- **Per-trip statistics modal** — avg speed, max speed, duration, stops, violations, signal losses, refuels, fuel consumed, and a full speed profile chart
 
 ### Responsive Design
-- **Desktop** — full sidebar with trip cards, alert feed, and detail panel alongside the map
-- **Tablet** — sidebar adapts to available width
-- **Mobile** — full-screen map with a bottom tab bar; Fleet and Alerts open as bottom sheets with drag handles
+- **Desktop** — full sidebar with trip cards, alert feed, and detail panel
+- **Tablet** — sidebar adapts gracefully to reduced width
+- **Mobile** — full-screen map with a bottom tab bar; Fleet and Alerts open as native-feeling bottom sheets
 
 ---
 
@@ -71,11 +73,11 @@ FleetOS is a fully interactive fleet tracking dashboard that replays real GPS te
 |---|---|
 | Framework | React 19 + Vite 6 |
 | Styling | Tailwind CSS 4 |
-| State Management | Zustand 5 |
-| Map | React Leaflet + CartoDB Dark Tiles |
+| State | Zustand 5 |
+| Map | React Leaflet + CartoDB |
 | Charts | Recharts |
-| Simulation | Web Worker (native browser API) |
-| Animation | requestAnimationFrame interpolation |
+| Simulation | Web Worker (native) |
+| Animation | requestAnimationFrame |
 | Virtual Scroll | react-virtuoso |
 | Deployment | Vercel |
 
@@ -86,45 +88,78 @@ FleetOS is a fully interactive fleet tracking dashboard that replays real GPS te
 ```
 src/
 ├── components/
-│   ├── FleetMap.jsx          # Leaflet map, vehicle markers, trail polylines
-│   ├── Sidebar.jsx           # Trip cards, detail panel, alert feed
-│   ├── DetailPanel.jsx       # Per-vehicle live charts and metrics
-│   ├── KpiBar.jsx            # Fleet-wide KPI metrics bar
-│   ├── StatusDonut.jsx       # Fleet status donut chart
-│   ├── StatsModal.jsx        # Per-trip statistics modal
-│   ├── ToastManager.jsx      # Alert toast notifications
-│   ├── CompletionBanner.jsx  # Simulation complete overlay
-│   ├── MobileBar.jsx         # Mobile bottom tab bar and sheets
-│   └── ErrorBoundary.jsx     # React error boundary
+│   ├── FleetMap.jsx            
+│   ├── Sidebar.jsx            
+│   ├── DetailPanel.jsx          
+│   ├── KpiBar.jsx               
+│   ├── StatusDonut.jsx          
+│   ├── StatsModal.jsx           
+│   ├── ToastManager.jsx         
+│   ├── CompletionBanner.jsx    
+│   ├── MobileBar.jsx           
+│   └── ErrorBoundary.jsx       
 ├── hooks/
-│   ├── useSimulation.js      # Web Worker lifecycle management
-│   ├── useInterpolatedVehicles.js  # rAF-based position interpolation
-│   └── useBreakpoint.js      # Responsive breakpoint detection
+│   ├── useSimulation.js        
+│   ├── useInterpolatedVehicles.js 
+│   └── useBreakpoint.js         
 ├── store/
-│   └── fleetStore.js         # Zustand global state
+│   └── fleetStore.js            
 └── utils/
-    └── dataLoader.js         # JSON loading, decimation, route extraction
+    └── dataLoader.js            
 
 public/
-├── simulationWorker.js       # Off-thread simulation engine
-└── data/                     # 5 trip JSON files
+├── simulationWorker.js         
+└── data/
+    ├── trip_1_cross_country.json
+    ├── trip_2_urban_dense.json
+    ├── trip_3_mountain_cancelled.json
+    ├── trip_4_southern_technical.json
+    └── trip_5_regional_logistics.json
 ```
 
-### Simulation Engine
+### How the Simulation Works
 
-The simulation runs entirely inside a **Web Worker** (`public/simulationWorker.js`). On each 100ms tick, the worker advances virtual time by `tickMs × playbackSpeed`, collects all events whose timestamps fall within that window, and posts them to the main thread. The main thread's Zustand store processes the batch and updates all vehicle states atomically.
+The simulation engine runs entirely inside a **Web Worker**. On each 100ms tick, the worker advances virtual time by `tickMs × playbackSpeed`, collects all events whose timestamps fall within that window, and posts the batch to the main thread. Zustand processes the batch and updates all vehicle states atomically in a single render cycle.
 
-This architecture ensures the UI never blocks — even at 100x speed processing thousands of events per second, the map and charts remain perfectly responsive.
+This means the UI never blocks — at 100x speed, thousands of events per second are processed without a single dropped frame on the map or charts.
 
-### Position Interpolation
+### How Interpolation Works
 
-Raw GPS data produces discrete position jumps between pings. The `useInterpolatedVehicles` hook runs a `requestAnimationFrame` loop that smoothly interpolates each vehicle's position and heading between its last known location and current target using an ease-in-out function, making movement appear fluid and continuous.
+Raw GPS data produces discrete position jumps between pings. The `useInterpolatedVehicles` hook runs a persistent `requestAnimationFrame` loop that tracks each vehicle's `startLocation`, `targetLocation`, and interpolation `progress`. Each frame, positions and headings are interpolated using an ease-in-out function, producing fluid continuous movement between GPS pings.
+
+---
+
+## Dataset
+
+| Trip | Vehicle | Route | Events | Distance | Status |
+|---|---|---|---|---|---|
+| Cross Country Long Haul | VH_001 | Houston TX → Boston MA | 28,901 | 2,959 km | Completed |
+| Urban Dense Delivery | VH_002 | San Francisco urban loop | 497 | 18 km | Completed |
+| Mountain Route Cancelled | VH_003 | Denver CO mountain route | 1,042 | 49 km | Cancelled |
+| Southern Technical Issues | VH_004 | Houston TX → Miami FL | 9,212 | 1,910 km | Completed |
+| Regional Logistics | VH_005 | Sacramento → Fresno CA | 2,270 | 273 km | Completed |
+
+**Total: 41,922 events · 5,209 km · 55-hour simulated timespan**
+
+---
+
+## Performance Optimizations
+
+| Optimization | Implementation |
+|---|---|
+| Off-thread simulation | Web Worker prevents main thread blocking |
+| Event decimation | Location pings thinned to max 800/trip for trail rendering |
+| Trail capping | Vehicle trails capped at 500 points, oldest dropped as new arrive |
+| Virtualized alerts | react-virtuoso renders only visible DOM nodes regardless of alert count |
+| Memoized stats | `useMemo` prevents speed profile recomputation on every render |
+| Atomic state updates | All vehicle states updated in a single Zustand batch per tick |
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - npm 9+
 
@@ -137,37 +172,12 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Open [http://localhost:5173](http://localhost:5173)
 
-### Usage
-
-1. The dashboard loads all 5 trip files automatically
-2. Press **▶ Play** to start the simulation
-3. Use **1x / 10x / 50x / 100x** to control playback speed
-4. Click any trip card in the sidebar to select a vehicle and open its detail panel
-5. Hover a trip card to preview the vehicle's full planned route on the map
-6. Click **↗** on any trip card to open the full statistics modal
-7. Press **↺ Reset** to restart the simulation from the beginning
-
-### Build for Production
-
-```bash
-npm run build
-```
----
-
-## Performance
-
-The dashboard is optimized to handle large datasets without degrading UI performance:
-
-- **Event decimation** — location pings are thinned to max 800 per trip for trail rendering while all alert/lifecycle events are preserved at full fidelity
-- **Web Worker isolation** — simulation processing never touches the main thread
-- **Trail capping** — each vehicle trail is capped at 500 points, dropping the oldest points as new ones are added
-- **Virtualized alert list** — the expanded alert feed uses react-virtuoso to render only visible rows regardless of total alert count
-- **Memoized stats** — the per-trip statistics modal uses `useMemo` to avoid recomputing speed profiles on every render
 
 ---
+
 
 ## License
 
-MIT
+MIT © [Suman Kumar](https://github.com/SumanKumar5)
